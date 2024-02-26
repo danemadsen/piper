@@ -7,6 +7,8 @@ file(READ "${CMAKE_CURRENT_LIST_DIR}/VERSION" piper_version)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
+option(BUILD_SHARED_LIBS "Build using shared libraries" ON)
+
 if(MSVC)
   # Force compiler to use UTF-8 for IPA constants
   add_compile_options("$<$<C_COMPILER_ID:MSVC>:/utf-8>")
@@ -17,8 +19,15 @@ elseif(NOT APPLE)
   string(APPEND CMAKE_C_FLAGS " -Wall -Wextra")
 endif()
 
-# Change to build a shared library instead of an executable
-add_library(piper SHARED src/cpp/piper.cpp)
+# Conditionally set the library type based on the option
+if(BUILD_SHARED_LIBS)
+  set(LIB_TYPE SHARED)
+else()
+  set(LIB_TYPE STATIC)
+endif()
+
+# Use the LIB_TYPE variable to determine the type of library to build
+add_library(piper ${LIB_TYPE} src/cpp/piper.cpp)
 
 # ---- fmt ---
 
