@@ -1,11 +1,14 @@
 cmake_minimum_required(VERSION 3.13)
 
-project(piper C CXX)
-
 file(READ "${CMAKE_CURRENT_LIST_DIR}/VERSION" piper_version)
 
-set(CMAKE_CXX_STANDARD 17)
-set(CMAKE_CXX_STANDARD_REQUIRED ON)
+project(
+  piper
+  VERSION 1.2.0
+  DESCRIPTION "Piper neural text to speech system"
+  HOMEPAGE_URL "https://github.com/rhasspy/piper"
+  LANGUAGES CXX
+)
 
 option(BUILD_SHARED_LIBS "Build using shared libraries" ON)
 
