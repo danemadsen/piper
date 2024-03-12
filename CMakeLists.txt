@@ -10,6 +10,11 @@ project(
   LANGUAGES CXX
 )
 
+# Set C++ standard to C++17
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_CXX_EXTENSIONS OFF)
+
 option(BUILD_SHARED_LIBS "Build using shared libraries" ON)
 
 if(MSVC)
